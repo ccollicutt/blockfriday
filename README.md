@@ -1,3 +1,5 @@
+[![Go](https://github.com/ccollicutt/blockfriday/actions/workflows/test.yaml/badge.svg)](https://github.com/ccollicutt/blockfriday/actions/workflows/test.yaml)
+
 # blockfriday
 
 This is a insanely simple admission controller that will block NEW deployments from being created on a Friday. Yes, Friday is hard coded! The point of this isn't to be useful, but to be a fun experiment in admission controllers.
