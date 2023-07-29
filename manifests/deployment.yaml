@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blockfriday
+  namespace: blockfriday
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blockfriday-admission-controller
+  template:
+    metadata:
+      labels:
+        app: blockfriday-admission-controller
+    spec:
+      containers:
+      - name: admission-controller
+        image: harbor.oakwood.ave/library/blockfriday:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+        - name: certs
+          mountPath: /certs
+          readOnly: true
+      volumes:
+      - name: certs
+        secret:
+          secretName: admission-controller-certs

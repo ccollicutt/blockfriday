@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: admission-controller-certificate
+  namespace: blockfriday
+spec:
+  secretName: admission-controller-certificate
+  issuerRef:
+    name: kubeadm-ca
+    kind: ClusterIssuer
+  commonName: blockfriday.blockfriday.svc.cluster.local
+  dnsNames:
+    - blockfriday.blockfriday.svc.cluster.local
+    - blockfriday.blockfriday.svc

@@ -1,0 +1,26 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: blockfriday
+  namespace: blockfriday
+  annotations:
+    cert-manager.io/inject-ca-from: blockfriday/admission-controller-certificate
+webhooks:
+  # NOTE(curtis): seems to need to be a fqdn, but then doesn't use it if there 
+  # is a service, weird
+  - name: blockfriday.serverascode.com
+    clientConfig:
+      service:
+        namespace: blockfriday
+        name: blockfriday
+        path: "/validate"
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: ["apps"]
+        apiVersions: ["v1"]
+        resources: ["deployments"]
+        scope: "*"
+    failurePolicy: Fail
+    sideEffects: None
+    admissionReviewVersions: ["v1"]
+
