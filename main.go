@@ -22,7 +22,7 @@ import (
 )
 
 const (
-	admissionWebhookPort = 8080
+	admissionWebhookPort = "8443"
 	tlsKeyFile           = "/certs/tls.key"
 	tlsCertFile          = "/certs/tls.crt"
 	admissionAPIVersion  = "admission.k8s.io/v1"
@@ -55,7 +55,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	server := &http.Server{Addr: ":8443"}
+	server := &http.Server{Addr: ":" + admissionWebhookPort}
 	startServer(server, tlsCertFile, tlsKeyFile)
 
 	signalCh := make(chan os.Signal, 1)
