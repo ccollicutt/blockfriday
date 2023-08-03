@@ -26,7 +26,7 @@ release/
 # Dependency directories (created by `go get`)
 # Uncomment the next line if you have a Go Modules project
 # /go.mod
-/go.sum
+#/go.sum
 
 # End of File
 build
