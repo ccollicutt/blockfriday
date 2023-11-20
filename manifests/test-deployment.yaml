@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blockfriday-test
+  namespace: blockfriday-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blockfriday-test
+  template:
+    metadata:
+      labels:
+        app: blockfriday-test
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

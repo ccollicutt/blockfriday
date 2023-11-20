@@ -19,7 +19,10 @@ webhooks:
         apiGroups: ["apps"]
         apiVersions: ["v1"]
         resources: ["deployments"]
-        scope: "*"
+        scope: "Namespaced"
+    namespaceSelector:
+      matchLabels:
+        blockfriday-enabled: "true"
     failurePolicy: Fail
     sideEffects: None
     admissionReviewVersions: ["v1"]
